@@ -2,6 +2,9 @@
 // Series of npm packages that we will use to give our server useful functionality
 
 const express = require('express');
+const fs = require('fs');
+const path = require('path')
+
 
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -23,9 +26,8 @@ app.use(express.json());
 
 
 //****WORK ON 1 THING AT A TIME!!! SERIOUSLY LISTEN!! */
-// require('./Routing/apiRouting.js')(app);
+require('./Routing/apiRouting.js')(app);
 require('./Routing/htmlRouting.js')(app);
-
 // LISTENER
 // The below code effectively "starts" our server
 
