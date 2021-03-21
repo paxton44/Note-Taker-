@@ -1,11 +1,6 @@
 // fs is a Node standard library package for reading and writing files
-const path = require('path');
+// const path = require('path');
 const fs = require('fs');
-
-
-
-
-
 // Uncomment this next function to write to the file with anything you pass in as process.argv[2]
 
 // fs.writeFile('log.txt', process.argv[2], (err) =>
@@ -17,10 +12,19 @@ module.exports = (app) => {
     // Below code handles when users "visit" a page.
     // In each of the below cases the user is shown an HTML page of content
   
-    app.get('/api/notes', (req, res) => {
-      console.log("<get----------------->")
-      res.json(noteData)
-     
+    
+    
+  // READS DB JSON file 
+     app.get('/api/notes', (req, res) => {
+      fs.readFile("./db/db.json", "utf8", ( err, data) => {
+          if (err) throw err;
+          console.log(data);
+          res.json(data)
+          console.log("<get----------------->")
+        });
+      })
+
+  //POST note data
       app.post('/api/notes', (req, res) => {
         console.log("<post----------------->")
         noteData.push(req.body)
@@ -30,8 +34,6 @@ module.exports = (app) => {
 
        
     });
-
-    
 
     // If no matching route is found default to home PAY attention to .. for navigating folders
     // app.get('*', (req, res) => {
