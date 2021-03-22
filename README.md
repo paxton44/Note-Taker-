@@ -22,3 +22,7 @@ N/A
 ## Questions
 If you have any questions, please contact me directly at mitchflood1@gmail.com 
 Visit my Github [here](https://github.com/paxton44)
+
+Visit the deployed page [here](https://floods-note-taking-app.herokuapp.com/)
+
+<!-- [alt text](./public/assets/Screenshot (192).png) -->
