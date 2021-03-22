@@ -25,4 +25,4 @@ Visit my Github [here](https://github.com/paxton44)
 
 Visit the deployed page [here](https://floods-note-taking-app.herokuapp.com/)
 
-<!-- [alt text](./public/assets/Screenshot (192).png) -->
+![app example](https://github.com/[paxton44]/[Note-Taker-]/blob/[public/assets]/Note Taker .jpg?raw=true)
