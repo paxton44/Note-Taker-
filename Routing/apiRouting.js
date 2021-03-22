@@ -4,6 +4,8 @@
 // const shortid = require('short-id')
 //this tests the connection to shortid by generating a random id in the console log 
 // console.log(shortid.generate());
+
+//using this instead had scoping issues with shortid 
 const { v4: uuidv4 } = require('uuid');
 uuidv4();
 const fs = require('fs');
