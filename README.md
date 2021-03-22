@@ -25,7 +25,7 @@ Visit my Github [here](https://github.com/paxton44)
 
 Visit the deployed page [here](https://floods-note-taking-app.herokuapp.com/)
 
-<<<<<<< HEAD
+
 ![image](https://github.com/paxton44/Note-Taker-/blob/32629ab360927fb5df42170c96b25828d2f5e249/public/assets/Note%20Taker%20.jpg)
 =======
 ![image](https://github.com/paxton44/Note-Taker-/blob/main/public/assets/Note%20Taker%20.jpg?raw=true)
