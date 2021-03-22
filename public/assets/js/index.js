@@ -41,6 +41,7 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+  
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -61,6 +62,7 @@ const renderActiveNote = () => {
   } else {
     noteTitle.value = '';
     noteText.value = '';
+    window.location.reload();
   }
 };
 

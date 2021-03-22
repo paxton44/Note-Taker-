@@ -6,6 +6,7 @@ const shortid = require('short-id')
 console.log(shortid.generate());
 const fs = require('fs');
 
+
 // Uncomment this next function to write to the file with anything you pass in as process.argv[2]
 
 // fs.writeFile('log.txt', process.argv[2], (err) =>
@@ -20,8 +21,9 @@ module.exports = (app) => {
      app.get('/api/notes', (req, res) => {
       fs.readFile("./db/db.json", "utf8", ( err, data) => {
           if (err) throw err;
+          var note = JSON.parse(data);
           console.log(data);
-          res.json(data);
+          res.json(note);
           console.log("<get----------------->")
         });
       })
@@ -29,29 +31,36 @@ module.exports = (app) => {
   // //POST note data
       app.post('/api/notes', (req, res) => {
   //       // console.log("<post----------------->")
-        noteData.push(req.body);
-  //       //assign an id to each note with generate before its read by the fs read file to make sure it can be  individually. we also used generate to test if shortid was connected
-        req.body.id = shortid.generate()
+        let savedNote = req.body
+        let note;
+  //       noteData.push(req.body);
+  // //       //assign an id to each note with generate before its read by the fs read file to make sure it can be  individually. we also used generate to test if shortid was connected
+  //       req.body.id = shortid.generate()
 
         fs.readFile("./db/db.json", "utf8", ( err, data) => {
-          let savedNote = JSON.parse(data);
-          //we use push to push the data to json 
-          savedNote.push(req.body);
-          if (err) throw err;
-          console.log(data);
-          res.json(data)
+          note = JSON.parse(data);
+          console.log(note);
+          note.push(savedNote);
+
+          fs.writeFile("./db/db.json",JSON.stringify(note),err =>{
+            if (err) throw err;
+            res.json(note)
+          })
+       
+        
           // console.log("<post----------------->")
          
-          //now we need to write the data from json in a string using stringify 
-          fs.writeFile("./db/db.json", JSON.stringify(savedNote),(err) => {
-            //do we need to req again? it looks like if we linked json stringify to linked note 
-            res.json(req.body);
-            if (err) throw err;
-            console.log('ERROR!!!');
-
-          });
+          
 
       })
+      //now we need to write the data from json in a string using stringify 
+      // fs.writeFile("/db/db.json", JSON.stringify(savedNote),(err) => {
+      //   //do we need to req again? it looks like if we linked json stringify to linked note 
+      //   res.json(req.body);
+      //   if (err) throw err;
+      //   console.log('ERROR!!!');
+
+      // });
   
     }
   )
