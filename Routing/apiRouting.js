@@ -1,9 +1,11 @@
 // fs is a Node standard library package for reading and writing files
 // const path = require('path');
 //shortid needs to be short-id to run properly. it'll give you the error code of Error: Cannot find module 'shortid'
-const shortid = require('short-id')
+// const shortid = require('short-id')
 //this tests the connection to shortid by generating a random id in the console log 
-console.log(shortid.generate());
+// console.log(shortid.generate());
+const { v4: uuidv4 } = require('uuid');
+uuidv4();
 const fs = require('fs');
 
 
@@ -31,7 +33,9 @@ module.exports = (app) => {
   // //POST note data
       app.post('/api/notes', (req, res) => {
   //       // console.log("<post----------------->")
-        let savedNote = req.body
+        // let savedNote = req.body
+        req.body.id = uuidv4();
+        
         let note;
   //       noteData.push(req.body);
   // //       //assign an id to each note with generate before its read by the fs read file to make sure it can be  individually. we also used generate to test if shortid was connected
@@ -40,7 +44,7 @@ module.exports = (app) => {
         fs.readFile("./db/db.json", "utf8", ( err, data) => {
           note = JSON.parse(data);
           console.log(note);
-          note.push(savedNote);
+          note.push(req.body);
 
           fs.writeFile("./db/db.json",JSON.stringify(note),err =>{
             if (err) throw err;
@@ -65,3 +69,5 @@ module.exports = (app) => {
     }
   )
 }
+
+//DELETE 
